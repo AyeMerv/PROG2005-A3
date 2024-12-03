@@ -1,55 +1,61 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';  // IonicModule
 import { HttpClient } from '@angular/common/http';
+import { ToastController } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [IonicModule],  // IonicModule
+  imports: [IonicModule, FormsModule],  // IonicModule
+  schemas: [],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   email: string = '';
   password: string = '';
-  toastVisible: boolean = false;
-  toastMessage: string = '';
 
   /**
    * Constructor for the class.
    * @param {HttpClient} http - An instance of the HttpClient service.
    */
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private toastController: ToastController) { }
 
-  login() {
+ 
+  /**
+   * Asynchronously logs in the user by sending a POST request to the specified API endpoint with login data.
+   * Shows a success message if login is successful, otherwise shows an error message.
+   * @returns None
+   */
+  async login() {
     const apiUrl = "https://nehemia.it.scu.edu.au/personaltrainer/personaltrainer/login";
     const loginData = {
       email: this.email,
       password: this.password,
     };
-
-    this.http.post(apiUrl, loginData).subscribe(
-      (response: any) => {
-        if (response.success) {
-          this.toastMessage = 'Login successful!';
-        } else {
-          this.toastMessage = 'Invalid username or password.';
-        }
-        this.showToast();
-      },
-      (error) => {
-        console.error('API error:', error);
-        this.toastMessage = 'An error occurred. Please try again.';
-        this.showToast();
-      }
-    );
+    try {
+      const response: any = await lastValueFrom(this.http.post(apiUrl, loginData));
+      await this.showToast('Login successful!', 'success');
+    } catch (error) {
+      console.error('Login unsuccessful:', error);
+      await this.showToast('An error occurred. Username or password is invalid. Please try again.', 'danger');
+    }
   }
 
-  showToast() {
-    this.toastVisible = true;
-    setTimeout(() => {
-      this.toastVisible = false;
-    }, 2000);
+  /**
+   * Displays a toast message with the given message and color.
+   * @param {string} message - The message to display in the toast.
+   * @param {string} color - The color of the toast message.
+   * @returns None
+   */
+  async showToast(message: string, color: string) {
+    const toast = await this.toastController.create({
+      message,
+      duration: 2000,
+      color
+    });
+    await toast.present();
   }
-
 }
