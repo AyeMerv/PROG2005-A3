@@ -1,16 +1,10 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
   <ion-card>
     <ion-card-header>
       <ion-card-title>Admin Login</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-input type="text" [(ngModel)]="email" ></ion-input>
+      <ion-input placeholder="Email" [(ngModel)]="email" ></ion-input>
       <ion-input placeholder="Password" [(ngModel)]="password" ></ion-input>
       <ion-button (click)="login()" expand="full">Login</ion-button>
     </ion-card-content>
