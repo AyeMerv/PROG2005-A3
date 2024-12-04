@@ -23,6 +23,9 @@
 
 /* Optional Dark Mode Import (Uncomment to enable) */
 @import '@ionic/angular/css/palettes/dark.system.css';
+/* Forcing Darkmode */
+@import "@ionic/angular/css/palettes/dark.always.css";
+
 
 /* Global styles */
 *,

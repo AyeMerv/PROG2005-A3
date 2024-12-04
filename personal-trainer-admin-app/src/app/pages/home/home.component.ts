@@ -9,6 +9,6 @@ import { IonicModule } from '@ionic/angular';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent {
-  trainerName="Trainer 1"
+  trainerName=""
   constructor() {}
 }
