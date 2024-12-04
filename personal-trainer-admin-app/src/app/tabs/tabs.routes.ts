@@ -35,6 +35,17 @@ export const routes: Routes = [
       },
     ],
   },
+  // Add routes for add-client and edit-client
+  {
+    path: 'add-client',
+    loadComponent: () =>
+      import('../pages/add-client/add-client.component').then((m) => m.AddClientComponent),
+  },
+  {
+    path: 'edit-client/:id',
+    loadComponent: () =>
+      import('../pages/edit-client/edit-client.component').then((m) => m.EditClientComponent),
+  },
   {
     path: '',
     redirectTo: '/tabs/tab1',

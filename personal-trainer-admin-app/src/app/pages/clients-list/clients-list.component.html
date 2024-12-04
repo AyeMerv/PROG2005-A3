@@ -22,8 +22,22 @@
           <p><strong>Fitness Program:</strong> {{ client.fitness_program }}</p>
           <p><strong>Joined:</strong> {{ client.joined_date | date }}</p>
           <p *ngIf="client.special_health_notes"><strong>Health Notes:</strong> {{ client.special_health_notes }}</p>
+          <!-- Buttons for edit and delete -->
+          <ion-button (click)="editClient(client.client_id)" fill="clear" color="black" slot="end">
+            <ion-icon slot="icon-only" name="create-outline"></ion-icon>
+          </ion-button>
+          <ion-button (click)="deleteClient(client.client_id)" fill="clear" color="danger" slot="end">
+            <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-button>
         </ion-label>
       </ion-item>
     </ion-list>
   </ion-card>
+
+  <!-- button for adding a client -->
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addClient()">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
