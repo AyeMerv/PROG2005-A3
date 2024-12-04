@@ -6,6 +6,7 @@ import { addIcons } from 'ionicons';
 import { ApiService } from 'src/app/services/api.service';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { AlertController } from '@ionic/angular'; //Alerts
 
 @Component({
   selector: 'app-add-client',
@@ -31,6 +32,7 @@ export class AddClientComponent {
   constructor(
     private router: Router,
     private toastController: ToastController,
+    private alertController: AlertController,
     private apiService: ApiService
   ) {
     addIcons({ arrowBackOutline });
@@ -52,24 +54,38 @@ export class AddClientComponent {
   }
 
   /**
-   * Submits the form to add a new client.
+   * Adds a new client to the system after confirmation.
    */
-  submitForm() {
-    if (!this.clientData.name || !this.clientData.email || !this.clientData.password) {
-      this.showToast('Please fill out all required fields.', 'danger');
-      return;
-    }
-
-    this.apiService.createClient(this.clientData).subscribe({
-      next: () => {
-        this.showToast('Client added successfully!', 'success');
-        this.goBack();
-      },
-      error: (err) => {
-        console.error('Error adding client:', err);
-        this.showToast('Failed to add client. Please try again.', 'danger');
-      },
+  async addClient() {
+    // Show confirmation alert
+    const alert = await this.alertController.create({
+      header: 'Confirm Add Client',
+      message: 'Are you sure you want to add this client?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+        },
+        {
+          text: 'Add',
+          handler: () => {
+            // Call the API to create the client
+            this.apiService.createClient(this.clientData).subscribe({
+              next: (response) => {
+                this.showToast('Client added successfully!', 'success');
+                this.router.navigate(['/tabs/tab2']); // Redirect to client list
+              },
+              error: (err) => {
+                console.error('Error adding client:', err);
+                this.showToast('Failed to add client. Please try again.', 'danger');
+              },
+            });
+          },
+        },
+      ],
     });
+
+    await alert.present(); // Show the confirmation alert
   }
 
   /**
