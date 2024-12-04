@@ -13,6 +13,7 @@ export class AuthService {
    * @param {number} trainerId - The ID of the logged-in trainer.
    */
   setTrainerId(trainerId: number): void {
+    console.log('AuthService - Setting Trainer ID:', trainerId);
     this.personalTrainerId = trainerId;
   }
 
@@ -21,6 +22,7 @@ export class AuthService {
    * @returns {number | null} The trainer's ID or null if not logged in.
    */
   getTrainerId(): number | null {
+    console.log('AuthService - Getting Trainer ID:', this.personalTrainerId); 
     return this.personalTrainerId;
   }
 }

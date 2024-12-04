@@ -42,10 +42,18 @@ export class LoginComponent {
     };
     try {
       const response: any = await lastValueFrom(this.http.post(apiUrl, loginData));
-      const trainerId = response.personalTrainerId;
-      // Store the trainer ID in the AuthService
-      this.authService.setTrainerId(trainerId);
-      await this.showToast('Login successful!', 'success');
+      
+      // Log the entire response
+      console.log('Login Response:', response);
+  
+      const trainerId = response.user?.personaltrainer_id;
+      if (trainerId) {
+        this.authService.setTrainerId(trainerId);
+        await this.showToast('Login successful!', 'success');
+      } else {
+        console.error('Trainer ID not found in response.');
+        await this.showToast('Error: Trainer ID missing.', 'danger');
+      }
     } catch (error) {
       console.error('Login unsuccessful:', error);
       await this.showToast('An error occurred. Username or password is invalid. Please try again.', 'danger');
@@ -63,7 +71,7 @@ export class LoginComponent {
       message,
       duration: 2000,
       color,
-      position: 'top',  // Display the toast at the top
+      position: 'middle',  // Display the toast at the top
     });
     await toast.present();
   }

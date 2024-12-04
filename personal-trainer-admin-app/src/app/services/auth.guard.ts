@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { ToastController } from '@ionic/angular';
 
@@ -9,35 +8,36 @@ import { ToastController } from '@ionic/angular';
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private authService: AuthService, 
-    private router: Router, 
+    private authService: AuthService,
+    private router: Router,
     private toastController: ToastController
-) {}
+  ) {}
 
-async canActivate(
+  async canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Promise<boolean> {
-    const trainerId = this.authService.getTrainerId();  // Get trainer ID
+    const personalTrainerId = this.authService.getTrainerId(); // Get the personalTrainerId from AuthService
 
-    if (trainerId) {
-      // If the trainer is logged in, allow access
+    console.log('AuthGuard - Checking Trainer ID:', personalTrainerId);
+
+    if (personalTrainerId) {
+      console.log('AuthGuard - Trainer ID found, access granted.');
       return true;
     } else {
-      // If not logged in, show a toast and redirect
+      console.log('AuthGuard - Trainer ID not found, redirecting to login.');
       await this.showToast('You need to be logged in to access this page.', 'danger');
       this.router.navigate(['/tabs/tab4']);
       return false;
     }
   }
 
-  // Method to display the toast
-  private async showToast(message: string, color: string) {
+  async showToast(message: string, color: string) {
     const toast = await this.toastController.create({
       message,
-      duration: 3000,  // Duration of the toast message
+      duration: 2000,
       color,
-      position: 'top',  // Display the toast at the top
+      position: 'middle',
     });
     await toast.present();
   }
