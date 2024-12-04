@@ -12,6 +12,9 @@
   <!-- If there are clients, show them in a list -->
   <ion-card>
     <ion-list *ngIf="clients.length > 0">
+      <ion-card-header>
+        <ion-card-title>Your Clients</ion-card-title>
+      </ion-card-header>
       <ion-item *ngFor="let client of clients">
         <ion-label>
           <h2>{{ client.name }}</h2>

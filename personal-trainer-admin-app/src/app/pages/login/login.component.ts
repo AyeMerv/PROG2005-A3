@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +26,8 @@ export class LoginComponent {
   constructor(
     private http: HttpClient, 
     private toastController: ToastController,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) { }
 
  
@@ -50,6 +52,7 @@ export class LoginComponent {
       if (trainerId) {
         this.authService.setTrainerId(trainerId);
         await this.showToast('Login successful!', 'success');
+        this.router.navigate(['/tabs/tab2']); // Redirect to tab2 after successful login
       } else {
         console.error('Trainer ID not found in response.');
         await this.showToast('Error: Trainer ID missing.', 'danger');

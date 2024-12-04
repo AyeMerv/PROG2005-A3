@@ -20,3 +20,14 @@ ion-list {
     margin-top: 20px;
   }
   
+  /* Responsive for smaller screens */
+  @media (max-width: 600px) {
+    ion-card {
+      margin: 8px;
+      padding: 12px;
+    }
+    
+    ion-card-title {
+      font-size: 1.2rem;
+    }
+  }
