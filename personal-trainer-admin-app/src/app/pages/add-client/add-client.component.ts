@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';  //IonicModule
+import { Router } from '@angular/router';
+import { arrowBackOutline } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-add-client',
@@ -9,5 +12,9 @@ import { IonicModule } from '@ionic/angular';  //IonicModule
   styleUrls: ['./add-client.component.scss'],
 })
 export class AddClientComponent {
-  constructor() {}
+  constructor(private router: Router) {addIcons({arrowBackOutline})}
+  
+  goBack(){
+    this.router.navigate(['/tabs/tab2']);
+  }
 }

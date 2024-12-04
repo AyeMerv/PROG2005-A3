@@ -3,7 +3,12 @@
     <ion-title>Add New Client</ion-title>
   </ion-toolbar>
 </ion-header>
-
+  <!-- button for adding a client -->
+  <ion-fab colour="danger" vertical="bottom" slot="fixed">
+    <ion-fab-button (click)="goBack()">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 <ion-content>
   <ion-card>
     <ion-card-header>
