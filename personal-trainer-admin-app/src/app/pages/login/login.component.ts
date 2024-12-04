@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { ToastController } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -21,7 +22,11 @@ export class LoginComponent {
    * Constructor for the class.
    * @param {HttpClient} http - An instance of the HttpClient service.
    */
-  constructor(private http: HttpClient, private toastController: ToastController) { }
+  constructor(
+    private http: HttpClient, 
+    private toastController: ToastController,
+    private authService: AuthService
+  ) { }
 
  
   /**
@@ -37,6 +42,9 @@ export class LoginComponent {
     };
     try {
       const response: any = await lastValueFrom(this.http.post(apiUrl, loginData));
+      const trainerId = response.personalTrainerId;
+      // Store the trainer ID in the AuthService
+      this.authService.setTrainerId(trainerId);
       await this.showToast('Login successful!', 'success');
     } catch (error) {
       console.error('Login unsuccessful:', error);
@@ -54,7 +62,8 @@ export class LoginComponent {
     const toast = await this.toastController.create({
       message,
       duration: 2000,
-      color
+      color,
+      position: 'top',  // Display the toast at the top
     });
     await toast.present();
   }

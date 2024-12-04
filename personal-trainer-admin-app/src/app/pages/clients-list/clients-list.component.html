@@ -1,8 +1,26 @@
 <ion-content>
+  <!-- If there are no clients, show a message -->
+  <ion-card *ngIf="clients.length === 0">
+    <ion-card-header>
+      <ion-card-title>No clients found</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      It looks like you don't have any clients yet. Please add clients to your list.
+    </ion-card-content>
+  </ion-card>
+
+  <!-- If there are clients, show them in a list -->
   <ion-card>
-    <ion-list>
-      <ion-item button (click)="goToEditClient(1)">Client 1</ion-item>
-      <ion-item button (click)="goToEditClient(2)">Client 2</ion-item>
+    <ion-list *ngIf="clients.length > 0">
+      <ion-item *ngFor="let client of clients">
+        <ion-label>
+          <h2>{{ client.name }}</h2>
+          <p>{{ client.email }}</p>
+          <p><strong>Fitness Program:</strong> {{ client.fitness_program }}</p>
+          <p><strong>Joined:</strong> {{ client.joined_date | date }}</p>
+          <p *ngIf="client.special_health_notes"><strong>Health Notes:</strong> {{ client.special_health_notes }}</p>
+        </ion-label>
+      </ion-item>
     </ion-list>
-  </ion-card>  
+  </ion-card>
 </ion-content>
