@@ -5,7 +5,21 @@ ion-fab {
     padding: 15px;
   }
   
-  ion-fab-button {
+ion-fab-button {
     border-radius: 50%;
     --background: rgb(186, 25, 25);
+  }
+
+ion-label {
+    padding-bottom: 10px;
+  }
+
+// Ensure proper spacing and alignment for form fields
+.form-layout ion-item {
+    margin-bottom: 16px;
+  }
+
+// Styling for the submit button
+.submit-btn {
+    margin-top: 24px;
   }
