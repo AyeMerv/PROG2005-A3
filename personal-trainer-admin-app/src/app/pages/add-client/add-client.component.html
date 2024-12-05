@@ -60,12 +60,15 @@
         <!-- Fitness Program -->
         <ion-item>
           <ion-label position="floating">Fitness Program</ion-label>
-          <ion-input
-            [(ngModel)]="clientData.fitness_program"
-            name="fitness_program"
-            placeholder="e.g., Muscle Gain"
-          ></ion-input>
+          <ion-select [(ngModel)]="clientData.fitness_program" name="fitness_program" placeholder="Select Fitness Program">
+            <ion-select-option value="fat loss">Fat Loss</ion-select-option>
+            <ion-select-option value="senior fitness">Senior Fitness</ion-select-option>
+            <ion-select-option value="muscle gain">Muscle Gain</ion-select-option>
+            <ion-select-option value="pre/postnatal fitness">Pre/Postnatal Fitness</ion-select-option>
+            <ion-select-option value="overall fitness">Overall Fitness</ion-select-option>
+          </ion-select>
         </ion-item>
+
 
         <!-- Special Health Notes -->
         <ion-item>
