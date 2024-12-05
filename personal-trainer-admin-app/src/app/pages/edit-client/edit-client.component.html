@@ -4,16 +4,106 @@
   </ion-toolbar>
 </ion-header>
 
+<!-- Floating back button -->
+<ion-fab vertical="bottom" horizontal="start" slot="fixed">
+  <ion-fab-button color="danger" (click)="goBack()">
+    <ion-icon name="arrow-back-outline"></ion-icon>
+  </ion-fab-button>
+</ion-fab>
+
 <ion-content>
   <ion-card>
     <ion-card-header>
-      <ion-card-title>Client Info</ion-card-title>
+      <ion-card-title>Update Client Information</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <ion-input placeholder="Name"></ion-input>
-      <ion-input placeholder="Email" type="email"></ion-input>
-      <ion-input placeholder="Password" type="password"></ion-input>
-      <ion-button expand="full">Update Client</ion-button>
+      <form (ngSubmit)="updateClient()" class="form-layout">
+        <!-- Name -->
+        <ion-item>
+          <ion-label position="floating">Name</ion-label>
+          <ion-input [(ngModel)]="clientData.name" name="name" required></ion-input>
+        </ion-item>
+
+        <!-- Email -->
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input [(ngModel)]="clientData.email" name="email" type="email" required></ion-input>
+        </ion-item>
+
+        <!-- Password -->
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input [(ngModel)]="clientData.password" name="password" type="password"></ion-input>
+        </ion-item>
+
+        <!-- Date of Birth -->
+        <ion-item>
+          <ion-label position="floating">Date of Birth</ion-label>
+          <ion-datetime
+            [(ngModel)]="clientData.dob"
+            name="dob"
+            presentation="date"
+            placeholder="Select Date of Birth"
+          ></ion-datetime>
+        </ion-item>
+
+        <!-- Gender -->
+        <ion-item>
+          <ion-label position="floating">Gender</ion-label>
+          <ion-select [(ngModel)]="clientData.gender" name="gender" placeholder="Select Gender">
+            <ion-select-option value="Male">Male</ion-select-option>
+            <ion-select-option value="Female">Female</ion-select-option>
+            <ion-select-option value="Unspecified">Unspecified</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Fitness Program -->
+        <ion-item>
+          <ion-label position="floating">Fitness Program</ion-label>
+          <ion-select [(ngModel)]="clientData.fitness_program" name="fitness_program">
+            <ion-select-option value="fat loss">Fat Loss</ion-select-option>
+            <ion-select-option value="senior fitness">Senior Fitness</ion-select-option>
+            <ion-select-option value="muscle gain">Muscle Gain</ion-select-option>
+            <ion-select-option value="pre/postnatal fitness">Pre/Postnatal Fitness</ion-select-option>
+            <ion-select-option value="overall fitness">Overall Fitness</ion-select-option>
+          </ion-select>
+        </ion-item>
+
+        <!-- Special Health Notes -->
+        <ion-item>
+          <ion-label position="floating">Special Health Notes</ion-label>
+          <ion-textarea
+            [(ngModel)]="clientData.special_health_notes"
+            name="special_health_notes"
+            placeholder="Medical history, injuries, etc."
+          ></ion-textarea>
+        </ion-item>
+
+        <!-- Joined Date -->
+        <ion-item>
+          <ion-label position="floating">Joined Date</ion-label>
+          <ion-datetime
+            [(ngModel)]="clientData.joined_date"
+            name="joined_date"
+            presentation="date"
+            placeholder="Select Joined Date"
+          ></ion-datetime>
+        </ion-item>
+
+        <!-- Ending Date -->
+        <ion-item>
+          <ion-label position="floating">Ending Date</ion-label>
+          <ion-datetime
+            [(ngModel)]="clientData.ending_date"
+            name="ending_date"
+            presentation="date"
+            placeholder="Select Ending Date"
+          ></ion-datetime>
+        </ion-item>
+
+        <!-- Submit Button -->
+        <ion-button expand="full" type="submit" class="submit-btn">Update Client</ion-button>
+      </form>
     </ion-card-content>
   </ion-card>
 </ion-content>

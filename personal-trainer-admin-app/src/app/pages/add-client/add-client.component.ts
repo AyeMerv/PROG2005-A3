@@ -34,9 +34,7 @@ export class AddClientComponent {
     private toastController: ToastController,
     private alertController: AlertController,
     private apiService: ApiService
-  ) {
-    addIcons({ arrowBackOutline });
-  }
+  ) {addIcons({ arrowBackOutline });}
 
   ngOnInit() {
     // Assign personal trainer ID from AuthService
