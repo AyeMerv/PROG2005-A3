@@ -1,0 +1,105 @@
+ion-header {
+    --background: #007bff; // Blue background for the header
+    --color: #fff; // White text color
+    ion-title {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+  }
+  
+  ion-card {
+    margin: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: #f9f9f9;
+  }
+  
+  ion-card-header {
+    background-color: rgba(78, 159, 85, 0.737);
+    color: #fff;
+    padding: 12px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+  
+  ion-card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  ion-card-content {
+    padding: 16px;
+    color: #000000;
+  
+    p {
+      font-size: 1rem;
+      margin-bottom: 12px;
+  
+      strong {
+        font-weight: 600;
+        color: rgba(78, 159, 85, 0.737);
+      }
+    }
+  }
+  
+  ion-button {
+    --background: rgba(78, 159, 85, 0.737); // Button color
+    --color: #fff; // White text color
+    --border-radius: 50px;
+    padding: 10px 20px;
+  }
+  
+  ion-button:hover {
+    --background: rgba(27, 59, 29, 0.737); // Darker blue on hover
+  }
+  
+  ion-content {
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  ion-card-header {
+    border-bottom: 1px solid #eee;
+    padding: 16px;
+  }
+  
+  ion-buttons {
+    margin-top: 16px;
+  }
+  
+  ion-card p {
+    font-size: 1rem;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+  
+  ion-card p:last-child {
+    margin-bottom: 0;
+  }
+  
+  @media (max-width: 768px) {
+    ion-card {
+      margin: 8px;
+      padding: 8px;
+    }
+  
+    ion-card-content {
+      padding: 8px;
+    }
+  
+    ion-card-header {
+      padding: 8px;
+    }
+  
+    ion-card-title {
+      font-size: 1.2rem;
+    }
+  
+    ion-button {
+      --padding-start: 10px;
+      --padding-end: 10px;
+    }
+  }
+  

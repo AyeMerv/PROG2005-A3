@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Client Details</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="closeModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- Display ALL client data -->
+  <ion-card *ngIf="client">
+    <ion-card-header>
+      <ion-card-title>{{ client.name }}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Email:</strong> {{ client.email }}</p>
+      <p><strong>Gender:</strong> {{ client.gender }}</p>
+      <p><strong>Date of Birth:</strong> {{ client.dob | date }}</p>
+      <p><strong>Fitness Program:</strong> {{ client.fitness_program }}</p>
+      <p><strong>Joined Date:</strong> {{ client.joined_date | date }}</p>
+      <p><strong>Ending Date:</strong> {{ client.ending_date | date }}</p>
+      <p *ngIf="client.special_health_notes">
+        <strong>Health Notes:</strong> {{ client.special_health_notes }}
+      </p>
+      <p><strong>Trainer ID:</strong> {{ client.personaltrainer_id }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

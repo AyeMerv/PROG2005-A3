@@ -1,33 +1,45 @@
 <ion-content>
-  <!-- If there are no clients, show a message -->
-  <ion-card *ngIf="clients.length === 0">
+  <!-- Search Bar -->
+  <ion-searchbar 
+    [(ngModel)]="searchTerm"
+    (ionInput)="filterClients()" 
+    debounce="0" 
+    placeholder="Search Clients"
+    showClearButton="focus">
+  </ion-searchbar>
+
+  <!-- If there are no filtered clients, show a message -->
+  <ion-card *ngIf="filteredClients.length === 0 && searchTerm.trim() !== ''">
     <ion-card-header>
       <ion-card-title>No clients found</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      It looks like you don't have any clients yet. Please add clients to your list.
+      <h2>There are no clients with that Name.</h2>
     </ion-card-content>
   </ion-card>
 
   <!-- If there are clients, show them in a list -->
   <ion-card>
-    <ion-list *ngIf="clients.length > 0">
+    <ion-list *ngIf="filteredClients.length > 0">
       <ion-card-header>
         <ion-card-title>Your Clients</ion-card-title>
       </ion-card-header>
-      <ion-item *ngFor="let client of clients">
+      <ion-item *ngFor="let client of filteredClients">
         <ion-label>
           <h2>{{ client.name }}</h2>
           <p>{{ client.email }}</p>
           <p><strong>Fitness Program:</strong> {{ client.fitness_program }}</p>
           <p><strong>Joined:</strong> {{ client.joined_date | date }}</p>
           <p *ngIf="client.special_health_notes"><strong>Health Notes:</strong> {{ client.special_health_notes }}</p>
-          <!-- Buttons for edit and delete -->
+          <!-- Buttons for edit, delete and view -->
           <ion-button (click)="editClient(client.client_id)" fill="clear" color="black" slot="end">
             <ion-icon slot="icon-only" name="create-outline"></ion-icon>
           </ion-button>
           <ion-button (click)="deleteClient(client.client_id)" fill="clear" color="danger" slot="end">
             <ion-icon slot="icon-only" name="trash-outline"></ion-icon>
+          </ion-button>
+          <ion-button (click)="viewClient(client.client_id)" fill="clear" color="black" slot="end">
+            View
           </ion-button>
         </ion-label>
       </ion-item>
