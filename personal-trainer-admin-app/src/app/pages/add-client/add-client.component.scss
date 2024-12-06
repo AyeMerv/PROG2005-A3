@@ -1,18 +1,23 @@
 ion-fab {
     --background: var(--ion-color-primary);
     --color: #fff;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
     padding: 15px;
   }
   
 ion-fab-button {
     border-radius: 50%;
     --background: rgb(186, 25, 25);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+
   }
 
 ion-label {
     padding-bottom: 10px;
+    transform: translateY(10%) !important;
   }
+
+
+  
 
 // Ensure proper spacing and alignment for form fields
 .form-layout ion-item {
