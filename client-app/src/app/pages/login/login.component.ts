@@ -48,7 +48,7 @@ export class LoginComponent {
       // Log the entire response
       console.log('Login Response:', response);
   
-      const clientId = response.user?.clientId;
+      const clientId = response.user?.client_id;
       if (clientId) {
         this.authService.setClientId(clientId);
         await this.showToast('Login successful!', 'success');
