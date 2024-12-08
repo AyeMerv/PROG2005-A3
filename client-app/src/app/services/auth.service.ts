@@ -17,14 +17,21 @@ export class AuthService {
    * Sets the client's ID after successful login and persists it in localStorage.
    * @param {number} clientId - The ID of the logged-in client.
    */
-  setClientId(clientId: number, trainerId: number): void {
+  setClientId(clientId: number): void {
     console.log('AuthService - Setting Client ID:', clientId);
-    console.log('AuthService - Setting Trainer ID:', trainerId); // I don't think this is secure... 
     this.clientId = clientId;
-    this.trainerId = trainerId;
     localStorage.setItem('clientId', clientId.toString()); // Save to localStorage
-    localStorage.setItem('trainerId', trainerId.toString());
   }
+
+    /**
+   * Sets the client's ID after successful login and persists it in localStorage.
+   * @param {number} clientId - The ID of the logged-in client.
+   */
+    setTrainerId(trainerId: number): void {
+      console.log('AuthService - Setting Trainer ID:', trainerId); // I don't think this is secure... 
+      this.trainerId = trainerId;
+      localStorage.setItem('trainerId', trainerId.toString());
+    }
 
   /**
    * Gets the client's ID from memory or localStorage.
@@ -39,6 +46,20 @@ export class AuthService {
     console.log('AuthService - Getting Client ID:', this.clientId); 
     return this.clientId;
   }
+
+    /**
+   * Gets the trainer's ID from memory or localStorage.
+   * @returns {number | null} The trainer's ID or null if not logged in.
+   */
+    getTrainerId(): number | null {
+      if (!this.trainerId) {
+        // Fallback: Check localStorage if memory value is missing
+        const storedtrainerId = localStorage.getItem('trainerId');
+        this.trainerId = storedtrainerId ? parseInt(storedtrainerId, 10) : null;
+      }
+      console.log('AuthService - Getting Trainer ID:', this.trainerId); 
+      return this.trainerId;
+    }
 
   /**
    * Clears the client's ID from memory and localStorage during logout.

@@ -51,11 +51,12 @@ export class LoginComponent {
       const clientId = response.user?.client_id;
       const trainerId = response.user?.personaltrainer_id;
       if (clientId) {
-        this.authService.setClientId(clientId, trainerId);
+        this.authService.setClientId(clientId);
+        this.authService.setTrainerId(trainerId);
         await this.showToast('Login successful!', 'success');
         this.router.navigate(['/tabs/tab2']); // Redirect to tab2 after successful login
       } else {
-        console.error('Client ID not found in response.');
+        console.error('Client ID or Trainer ID not found in response.');
         await this.showToast('Error: Client ID missing.', 'danger');
       }
     } catch (error) {

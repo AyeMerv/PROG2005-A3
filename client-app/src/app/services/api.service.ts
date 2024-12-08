@@ -37,8 +37,8 @@ export class ApiService {
   }
 
   // Get specific client by name or ID
-  getClientByNameOrId(personalTrainerId: number, searchKey: string | number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/client/${personalTrainerId}/${searchKey}`);
+  getClientByNameOrId(personalTrainerId: number | null, clientId: number | null): Observable<any> {
+    return this.http.get(`${this.baseUrl}/client/${personalTrainerId}/${clientId}`);
   }
 
   // Create a new client
