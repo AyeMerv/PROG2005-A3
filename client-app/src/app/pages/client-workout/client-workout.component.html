@@ -4,24 +4,28 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-card>
-  <ion-list *ngIf="workoutPlan">
-    <ion-card-header>
-      <ion-card-title>Your Clients</ion-card-title>
-      <ion-card-subtitle ><strong>Fitness Program:</strong><em> {{ workoutPlan[0].fitness_program }}</em></ion-card-subtitle>
-    </ion-card-header>
-    <ion-item *ngFor="let day of workoutPlan">
+<ion-card *ngIf="workoutPlan">
+  <ion-card-header color="primary">
+    <ion-card-title>Your Workout Plan</ion-card-title>
+    <ion-card-subtitle><b>Fitness Program:</b> <em> {{ workoutPlan[0].fitness_program.toUpperCase() }}
+      </em></ion-card-subtitle>
+  </ion-card-header>
+  <ion-list *ngFor="let day of workoutPlan; index as i">
+    <ion-item-divider *ngIf="workoutPlan[0] == workoutPlan[i] || workoutPlan[i - 1].day != workoutPlan[i].day"></ion-item-divider>
+    <ion-item >
       <ion-label>
-        <h2>{{ day.name }}</h2>
-        <p>{{ day.email }}</p>
-        <p><strong>Day:</strong> {{ day.day }}</p>
+        <ion-text *ngIf="workoutPlan[0] == workoutPlan[i] || workoutPlan[i - 1].day != workoutPlan[i].day">
+          <h1><strong> {{ day.day }}</strong></h1>
+          <hr>
+        </ion-text>
         <p><strong>Exercise:</strong> {{day.exercise_name}}</p>
-        <p>{{day.description}}</p>
-        <h3>Sets</h3>
+        <p><em>{{day.description}}</em></p>
+        <hr>
+        <h2>Sets</h2>
         <ion-list>
-          <ion-item *ngFor="let set of day.sets; index as i">
-            <p>Set #{{i + 1}}: {{set}}</p>
-          </ion-item>  
+          <ion-item class="setItem" *ngFor="let set of day.sets; index as i">
+            <p>Set #{{i + 1}}: {{set}} rep(s)</p>
+          </ion-item>
         </ion-list>
       </ion-label>
     </ion-item>
