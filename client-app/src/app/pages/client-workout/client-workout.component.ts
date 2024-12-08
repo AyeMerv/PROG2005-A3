@@ -20,6 +20,12 @@ export class ClientWorkoutComponent implements OnInit {
   ) {
   }
 
+  /**
+   * Initializes the component by retrieving the client ID from the authentication service,
+   * and then fetching the workout plan for the client using the API service.
+   * If the client ID is not found, an error message is logged.
+   * @returns None
+   */
   ngOnInit() {
     this.clientId = this.authService.getClientId();
     if (this.clientId !== null) {
