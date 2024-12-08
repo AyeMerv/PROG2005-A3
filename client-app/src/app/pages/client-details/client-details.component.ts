@@ -15,8 +15,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class ClientDetailsComponent implements OnInit {
   clientId: number | null = null; 
   trainerId: number | null = null;
-  clientData: any[] = [];
-  trainerData: any[] = [];
 
   @Input() client: any;  // Accept the entire client object passed from the parent
   @Input() trainer: any;
@@ -26,6 +24,12 @@ export class ClientDetailsComponent implements OnInit {
     private authService: AuthService,
   ) {}
 
+  /**
+   * Initializes the component by setting the client and trainer IDs using the
+   * authentication service. It then fetches client details and trainer details
+   * based on the client ID. If the client ID is not found, it logs an error message.
+   * @returns None
+   */
   ngOnInit() {
     this.clientId = this.authService.getClientId();
     this.trainerId = this.authService.getTrainerId();
@@ -38,11 +42,15 @@ export class ClientDetailsComponent implements OnInit {
     }
   }
 
+  /**
+   * Fetches client details from the API service based on the trainerId and clientId.
+   * If the clientId is not null, it makes a request to the API and updates the client data.
+   * @returns None
+   */
   fetchClientDetails() {
     if (this.clientId !== null) {
       this.apiService.getClientByNameOrId(this.trainerId, this.clientId).subscribe({
         next: (data) => {
-          this.clientData = data;
           this.client = data[0];
         },
         error: (err) => console.error('Error fetching clients:', err),
@@ -50,11 +58,17 @@ export class ClientDetailsComponent implements OnInit {
     }
   }
 
+  /**
+   * Fetches details of a personal trainer using the trainerId property.
+   * Makes an API call to retrieve the trainer data and assigns it to the trainer property.
+   * If the trainerId is a number, it fetches the trainer data based on the incremented trainerId.
+   * Logs an error message if there is an issue fetching the data.
+   * @returns None
+   */
   fetchTrainerDetails() {
     if (this.trainerId !== null) {
       this.apiService.getPersonalTrainerData(this.trainerId).subscribe({
         next: (data) => {
-          this.trainerData = data;
           if (typeof(this.trainerId) == "number") {
            let trainerObjectNum = this.trainerId + 1;
            this.trainer = data[trainerObjectNum];
