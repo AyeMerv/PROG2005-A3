@@ -16,8 +16,10 @@ export class ClientDetailsComponent implements OnInit {
   clientId: number | null = null; 
   trainerId: number | null = null;
   clientData: any[] = [];
+  trainerData: any[] = [];
 
   @Input() client: any;  // Accept the entire client object passed from the parent
+  @Input() trainer: any;
 
   constructor(
     private apiService: ApiService,
@@ -27,9 +29,10 @@ export class ClientDetailsComponent implements OnInit {
   ngOnInit() {
     this.clientId = this.authService.getClientId();
     this.trainerId = this.authService.getTrainerId();
-
     if (this.clientId !== null) {
       this.fetchClientDetails();
+      this.fetchTrainerDetails();
+
     } else {
       console.error('Trainer ID not found!');
     }
@@ -41,7 +44,22 @@ export class ClientDetailsComponent implements OnInit {
         next: (data) => {
           this.clientData = data;
           this.client = data[0];
-          console.log(data);
+        },
+        error: (err) => console.error('Error fetching clients:', err),
+      });
+    }
+  }
+
+  fetchTrainerDetails() {
+    if (this.trainerId !== null) {
+      this.apiService.getPersonalTrainerData(this.trainerId).subscribe({
+        next: (data) => {
+          this.trainerData = data;
+          if (typeof(this.trainerId) == "number") {
+           let trainerObjectNum = this.trainerId + 1;
+           this.trainer = data[trainerObjectNum];
+          }
+          
         },
         error: (err) => console.error('Error fetching clients:', err),
       });
