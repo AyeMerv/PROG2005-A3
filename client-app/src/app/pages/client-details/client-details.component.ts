@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { help } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-client-details',
@@ -22,7 +24,9 @@ export class ClientDetailsComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private authService: AuthService,
-  ) {}
+  ) {
+    addIcons({help});
+  }
 
   /**
    * Initializes the component by setting the client and trainer IDs using the

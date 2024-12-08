@@ -4,25 +4,39 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
-      <!-- Display ALL client data -->
-      <ion-card *ngIf="client">
-        <ion-card-header color="primary">
-          <ion-card-title>{{ client.name }}</ion-card-title>
-          <ion-card-subtitle><b>Trainer:</b> <em> {{ trainer.name }} </em></ion-card-subtitle>
-        </ion-card-header>
-        <ion-card-content>
-          <p><strong>Email:</strong> {{ client.email }}</p>
-          <p><strong>Gender:</strong> {{ client.gender }}</p>
-          <p><strong>Date of Birth:</strong> {{ client.dob | date }}</p>
-          <p><strong>Fitness Program:</strong> {{ client.fitness_program }}</p>
-          <p><strong>Joined Date:</strong> {{ client.joined_date | date }}</p>
-          <p><strong>Ending Date:</strong> {{ client.ending_date | date }}</p>
-          <p *ngIf="client.special_health_notes">
-            <strong>Health Notes:</strong> {{ client.special_health_notes }}
-          </p>
-          <p><strong>Trainer ID:</strong> {{ client.personaltrainer_id }}</p>
-        </ion-card-content>
-      </ion-card>
+<ion-content>
+  <!-- Display client data -->
+  <ion-card *ngIf="client">
+    <ion-card-header color="primary">
+      <ion-card-title>{{ client.name }}</ion-card-title>
+      <ion-card-subtitle><b>Trainer:</b> <em> {{ trainer.name }} </em></ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Email:</strong> {{ client.email }}</p>
+      <p><strong>Gender:</strong> {{ client.gender }}</p>
+      <p><strong>Date of Birth:</strong> {{ client.dob | date }}</p>
+      <p><strong>Fitness Program:</strong> {{ client.fitness_program }}</p>
+      <p><strong>Joined Date:</strong> {{ client.joined_date | date }}</p>
+      <p><strong>Ending Date:</strong> {{ client.ending_date | date }}</p>
+      <p *ngIf="client.special_health_notes">
+        <strong>Health Notes:</strong> {{ client.special_health_notes }}
+      </p>
+      <p><strong>Trainer ID:</strong> {{ client.personaltrainer_id }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Help Widget -->
+  <ion-alert trigger="present-help" header="Help for page: Client Details"
+    subHeader="This page displays all personal client data and membership information."
+    message="If the information looks incorrect, please clear the cookies of your page and retry login."></ion-alert>
+
+
+  <!-- Display help widget -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end" [edge]="false">
+    <ion-fab-button id="present-help">
+      <ion-icon name="help"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 
 </ion-content>
