@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
-
+import { help } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 @Component({
   selector: 'app-home',
   standalone: true,
@@ -10,5 +11,7 @@ import { IonicModule } from '@ionic/angular';
 })
 export class HomeComponent {
   trainerName=""
-  constructor() {}
+  constructor() {
+    addIcons({help})
+  }
 }

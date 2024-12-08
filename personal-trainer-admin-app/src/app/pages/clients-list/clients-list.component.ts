@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service'; 
-import { add, createOutline, trashOutline } from 'ionicons/icons';
+import { add, createOutline, help, trashOutline } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { ToastController } from '@ionic/angular'; 
 import { AlertController } from '@ionic/angular';
@@ -33,7 +33,7 @@ export class ClientListComponent implements OnInit {
     private authService: AuthService,
     private router: Router
   ) {
-    addIcons({createOutline, trashOutline, add});
+    addIcons({createOutline, trashOutline, add, help});
   }
 
   ngOnInit() {

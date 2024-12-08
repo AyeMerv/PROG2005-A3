@@ -6,6 +6,8 @@ import { FormsModule } from '@angular/forms';
 import { lastValueFrom } from 'rxjs';
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { help } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-login',
@@ -28,7 +30,9 @@ export class LoginComponent {
     private toastController: ToastController,
     private authService: AuthService,
     private router: Router
-  ) { }
+  ) {
+    addIcons({help});
+  }
 
  
   /**
