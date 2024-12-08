@@ -1,27 +1,30 @@
 <ion-content>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Admin Login</ion-card-title>
-    </ion-card-header>
-    <ion-card-content>
-      <ion-input placeholder="Email" [(ngModel)]="email" ></ion-input>
-      <ion-input placeholder="Password" [(ngModel)]="password">
-          <ion-input-password-toggle slot="end"></ion-input-password-toggle>
-      </ion-input>
-      <ion-button (click)="login()" expand="full">Login</ion-button>
-    </ion-card-content>
-  </ion-card>
+  <ion-grid>
+    <ion-row>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>Client Login</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <ion-input placeholder="Email" [(ngModel)]="email"></ion-input>
+          <ion-input placeholder="Password" [(ngModel)]="password">
+            <ion-input-password-toggle slot="end"></ion-input-password-toggle>
+          </ion-input>
+          <ion-button (click)="login()" expand="full">Login</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-row>
+  </ion-grid>
 
-      <!-- Help Widget -->
-      <ion-alert trigger="present-help-login" header="Help: Login"
-      subHeader="This page is a login form for clients."
-      message="If you can not log in to your account, please reach out to support, found within the home page."></ion-alert>
-  
-  
-    <!-- Display help widget -->
-    <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-      <ion-fab-button id="present-help-login">
-        <ion-icon name="help"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+  <!-- Help Widget -->
+  <ion-alert trigger="present-help-login" header="Help: Login" subHeader="This page is a login form for clients."
+    message="If you can not log in to your account, please reach out to support, found within the home page."></ion-alert>
+
+
+  <!-- Display help widget -->
+  <ion-fab slot="fixed" vertical="bottom" horizontal="end">
+    <ion-fab-button id="present-help-login">
+      <ion-icon name="help"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
