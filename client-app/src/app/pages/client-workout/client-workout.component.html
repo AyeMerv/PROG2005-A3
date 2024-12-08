@@ -1,15 +1,17 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Client Workout Plan</ion-title>
-  </ion-toolbar>
-</ion-header>
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Client Workout Plan</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <ion-card *ngIf="workoutPlan">
-    <ion-card-header color="primary">
-      <ion-card-title>Your Workout Plan</ion-card-title>
-      <ion-card-subtitle><b>Fitness Program:</b> <em> {{ workoutPlan[0].fitness_program.toUpperCase() }}
-        </em></ion-card-subtitle>
-    </ion-card-header>
+    <ion-card id="workoutPlanHeaderCard">
+      <ion-card-header color="primary">
+        <ion-card-title>Your Workout Plan</ion-card-title>
+        <ion-card-subtitle><b>Fitness Program:</b> <em> {{ workoutPlan[0].fitness_program.toUpperCase() }}
+          </em></ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
     <ion-list *ngFor="let day of workoutPlan; index as i">
       <ion-item-divider
         *ngIf="workoutPlan[0] == workoutPlan[i] || workoutPlan[i - 1].day != workoutPlan[i].day"></ion-item-divider>
@@ -34,14 +36,14 @@
   </ion-card>
 
   <!-- Help Widget -->
-  <ion-alert trigger="present-help" header="Help for page: Client Workout Plan"
+  <ion-alert trigger="present-help-clientworkout" header="Help: Client Workout Plan"
     subHeader="This page displays all personal client workout information."
     message="If the information looks incorrect, please clear the cookies of your page and retry login."></ion-alert>
 
 
   <!-- Display help widget -->
   <ion-fab slot="fixed" vertical="bottom" horizontal="end">
-    <ion-fab-button id="present-help">
+    <ion-fab-button id="present-help-clientworkout">
       <ion-icon name="help"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -1,10 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Client Details</ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Client Details</ion-title>
+    </ion-toolbar>
+  </ion-header>
   <!-- Display client data -->
   <ion-card *ngIf="client">
     <ion-card-header color="primary">
@@ -26,14 +27,14 @@
   </ion-card>
 
   <!-- Help Widget -->
-  <ion-alert trigger="present-help" header="Help for page: Client Details"
+  <ion-alert trigger="present-help-clientdetails" header="Help: Client Details"
     subHeader="This page displays all personal client data and membership information."
     message="If the information looks incorrect, please clear the cookies of your page and retry login."></ion-alert>
 
 
   <!-- Display help widget -->
   <ion-fab slot="fixed" vertical="bottom" horizontal="end" [edge]="false">
-    <ion-fab-button id="present-help">
+    <ion-fab-button id="present-help-clientdetails">
       <ion-icon name="help"></ion-icon>
     </ion-fab-button>
   </ion-fab>

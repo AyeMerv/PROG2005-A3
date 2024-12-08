@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
+import { help } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
 
 @Component({
   selector: 'app-privacy',
@@ -10,6 +12,8 @@ import { IonicModule } from '@ionic/angular';
 })
 export class PrivacyComponent {
 
-  constructor() { }
+  constructor() {
+    addIcons({help});
+  }
 
 }

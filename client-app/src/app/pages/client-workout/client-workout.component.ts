@@ -3,6 +3,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { ApiService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { help } from 'ionicons/icons';
+import { addIcons } from 'ionicons';
+
+
 @Component({
   selector: 'app-client-workout',
   standalone: true,
@@ -18,6 +22,7 @@ export class ClientWorkoutComponent implements OnInit {
     private apiService: ApiService,
     private authService: AuthService,
   ) {
+    addIcons({help});
   }
 
   /**
