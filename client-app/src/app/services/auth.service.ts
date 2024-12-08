@@ -5,6 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   private clientId: number | null = null;
+  private trainerId: number | null = null;
 
   constructor() {
     // On initialization, load the client ID from localStorage if it exists
@@ -16,10 +17,13 @@ export class AuthService {
    * Sets the client's ID after successful login and persists it in localStorage.
    * @param {number} clientId - The ID of the logged-in client.
    */
-  setClientId(clientId: number): void {
+  setClientId(clientId: number, trainerId: number): void {
     console.log('AuthService - Setting Client ID:', clientId);
+    console.log('AuthService - Setting Trainer ID:', trainerId); // I don't think this is secure... 
     this.clientId = clientId;
-    localStorage.setItem('trainerId', clientId.toString()); // Save to localStorage
+    this.trainerId = trainerId;
+    localStorage.setItem('clientId', clientId.toString()); // Save to localStorage
+    localStorage.setItem('trainerId', trainerId.toString());
   }
 
   /**

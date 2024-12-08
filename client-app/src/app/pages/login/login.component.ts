@@ -49,8 +49,9 @@ export class LoginComponent {
       console.log('Login Response:', response);
   
       const clientId = response.user?.client_id;
+      const trainerId = response.user?.personaltrainer_id;
       if (clientId) {
-        this.authService.setClientId(clientId);
+        this.authService.setClientId(clientId, trainerId);
         await this.showToast('Login successful!', 'success');
         this.router.navigate(['/tabs/tab2']); // Redirect to tab2 after successful login
       } else {
