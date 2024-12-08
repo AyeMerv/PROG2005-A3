@@ -1,17 +1,8 @@
-ion-card-header {
-    * {
-        color: white;
-    }
-}
-
-.list-md {
+ion-card {
+    margin: 0 !important;
     padding: 0 !important;
 }
 
-ion-icon {
-    color: white; 
-}
-
-#workoutPlanHeaderCard {
+ion-card-header {
     margin: 0 !important;
 }
