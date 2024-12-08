@@ -15,6 +15,12 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}/personaltrainer`);
   }
 
+  // Get all personal trainers
+  getPersonalTrainerData(trainerId: any): Observable<any> {
+    const allTrainers = this.http.get(`${this.baseUrl}/personaltrainer`);
+    return this.http.get(`${this.baseUrl}/personaltrainer`);
+  }
+
   // Get all clients by personal trainer ID
   getClients(personalTrainerId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/client/${personalTrainerId}`);
